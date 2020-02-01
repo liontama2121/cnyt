@@ -3,22 +3,22 @@
 from sys import stdin
 import math
 '''libreria de numeros complejos'''
-def suma (c1,c2):
+def suma(c1,c2):
     '''suma de numeros complejos la parte real[] + imaginario[]'''
     sumaN=c1[0]+c2[0]
-    sumaI=c1[1]+c1[1]
-    return (sumaN,sumaI)
+    sumaI=c1[1]+c2[1]
+    return [sumaN,sumaI]
 
-def resta (c1,c2):
+def resta(c1,c2):
     '''resta numeros complejos la parte real[] + imaginario[]'''
     restaN=c1[0]-c2[0]
     restaI=c1[1]-c1[1]
-    return (restaN,restaI)
+    return [restaN,restaI]
 def producto(c1,c2):
     '''multiplica numeros complejos la parte real[] + imaginario[]'''
-    productoN=(c1[0]*c2[0]+(-1*c1[1]*c2[1]))
+    productoN=c1[0]*c2[0]+(-1*c1[1]*c2[1])
     productoI=c1[0]*c2[1]+c1[1]*c2[0]
-    return (productoN,productoI)
+    return [productoN,productoI]
 def division(c1,c2):
     '''divide numeros complejos la parte real[] + imaginario[]'''
     divD=producto(c1,cambio)
@@ -29,8 +29,8 @@ def division(c1,c2):
     return(res)
 def modulo(c1):
     '''retorna el modulo de un numero complejo'''
-    res=(math.sqrt((c1[0]**2)+(c1[1]**2)))
-    return(res)     
+    res=((c1[0]**2)+(c1[1]**2))**0.5
+    return res    
     
 def conjugado(c1):
     '''cambia el simbolo en su parte imaginaria'''
@@ -44,14 +44,16 @@ def polar (c1):
     grados=math.degrees(tan)
     grados=round(grados,0)
     return(mod,grados)
-    
+def potencia(c1):
+    res=producto(c1,c1)
+    return res
     
     
 
 
 
     
-def main():
+'''def main():
     lis1=[int (x) for x in stdin.readline().strip().split()]
     lis2=[int (x) for x in stdin.readline().strip().split()]
     comando=str(stdin.readline().strip())
@@ -86,13 +88,16 @@ def main():
         res2=polar(lis2)
         print(str(res[0])+"+"+"e^i("+str(res[1])+")")
         print(str(res2[0])+"+"+"e^i("+str(res2[1])+")")
-        
+    elif comando=="potencia":
+         res=potencia(lis1)
+         res2=potencia(lis2)
+         print(res)
+         print(res2)
+          
          
         
    
     
 
 main()
-
- 
-
+''' 
