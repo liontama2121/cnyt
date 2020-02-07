@@ -1,8 +1,9 @@
 # cnyt
-#  LIBRERIA NUMEROS COMPLEJOS 
 from sys import stdin
 import math
-'''libreria de numeros complejos'''
+
+'''LIBRERIA DE OPERERADORES DE NUMEROS COMPLEJOS'''#-------------------------------------------------------------------------------------------------------------------------
+
 def suma(c1,c2):
     '''suma de numeros complejos la parte real[] + imaginario[]'''
     sumaN=c1[0]+c2[0]
@@ -48,11 +49,106 @@ def potencia(c1):
     res=producto(c1,c1)
     return res
     
+''''' OPERADORES CON VECTORES CON NUMEROS COMPLEJOS'''#------------------------------------------------------------------------------------------------------------------------    
+
+def sumaVectores(vector1,vector2):
+    '''Se ingresa cada vector como [] y de tuplas cque contienen complejos de la forma (a,b)'''
     
+    if len(vector1) != len(vector2):
+        return 'La suma entre estos 2 vectores no esta definida'
+    aux = []
+    for i in range(len(vector1)):
+        aux.append(suma(vector1[i],vector2[i]))
+    return aux     
 
 
 
-    
+def restaVectores(vector1,vector2):
+    '''Se ingresa cada vector como [] y de tuplas cque contienen complejos de la forma (a,b)'''
+    if len(vector1) != len(vector2): raise 'La resta entre estos 2 vectores no esta definida'
+    aux = []
+    for i in range(len(vector1)):
+        aux.append(resta(vector1[i],vector2[i]))
+    return aux
+
+
+'''MATRICES DE COMPLEJOS'''#------------------------------------------------------------------------------------------------------------------------------------------------
+def matrizTranspuesta(matriz):
+    '''Entra una matriz MxN, retorna su mtariz transpuesta asociada NxM'''
+    aux = []
+    for i in range(len(matriz[0])):
+        fila = []
+        for j in range(len(matriz)):
+            fila.append(matriz[j][i])
+        aux.append(fila)
+    return aux
+def versoAditivo(vector1):
+    ''' cambia los signos de el vector que entra'''
+    for i in range (len(vector1)):
+        for j in range (len(vector1[i])):
+            vector1[i][j] = -1*vector1[i][j]
+    print(vector1)        
+    return vector1
+
+
+def matrizConjugada(matriz):
+    '''Entra una matriz , retorna su mtariz conjugada asociada '''
+    aux = []
+    for i in range(len(matriz)):
+        fila = []
+        for j in range(len(matriz[0])):
+            fila.append(conjugado(matriz[i][j]))
+        aux.append(fila)
+    return aux
+
+def matrizAdjunta(matriz):
+    '''Entra una matriz, retorna la matriz adjunta asociada'''
+    return matrizTranspuesta(matrizConjugada(matriz))
+
+
+def matrizInversa(matriz):#DAGA
+    "Entra una matriz, retorna la matriz inversa Compleja"
+    aux = []
+    for i in range(len(matriz)):
+        fila = []
+        for j in range (len(matriz[0])):
+            fila.append(multiplicacion((-1,0),matriz[i][j]))
+        aux.append(fila)
+    return aux
+
+
+def moduloVector(vector):
+    '''Se ingresa un vector complejo, retorna el modulo del vector'''
+    aux = 0
+    for i in vector:
+        aux += modulo(i)**2
+    return round(aux**0.5,3)
+def sumaMatricesComplejas(matriz1,matriz2):
+    '''ingresan 2 matrices de M x N, retorna la suma de cada matriz compleja.'''
+    '''Condicion de filas y columnas iguales para la suma'''
+    if (len(matriz1) != len(matriz2)) or (len(matriz1[0]) != len(matriz2[0])):raise 'La suma entre estas 2 matrices no esta definida'
+    aux = []
+    for i in range(len(matriz1)):
+        aux.append(sumaVectores(matriz1[i],matriz2[i]))
+    return aux
+
+def sumaMatricesComplejas(matriz1,matriz2):
+    '''ingresan 2 matrices de M x N, retorna la resta de cada matriz compleja.'''
+    '''Condicion de filas y columnas iguales para la suma'''
+    if (len(matriz1) != len(matriz2)) or (len(matriz1[0]) != len(matriz2[0])):raise 'La suma entre estas 2 matrices no esta definida'
+    aux = []
+    for i in range(len(matriz1)):
+        aux.append(sumaVectores(matriz1[i],matriz2[i]))
+    return aux
+
+def productoInternoVectores(vector1,vector2):
+    '''Se ingresan 2 vectores complejos de longitud n, retorna el producto interno entre estos'''
+    if len(vector1) != len(vector2): raise 'Los vectores no tienen la misma longitud, su producto interno no esta definido'
+    aux = (0,0)
+    for i in range(len(vector1)): 
+        aux = suma(aux,multiplicacion(vector1[i],vector2[i]))
+    return aux;
+   
 '''def main():
     lis1=[int (x) for x in stdin.readline().strip().split()]
     lis2=[int (x) for x in stdin.readline().strip().split()]
