@@ -1,1 +1,44 @@
+#grafica mandelbrot
+
+
+from sys import stdin
+import libreriaC as lib
+import numpy as np
+import matplotlib.pyplot as plt
+
+def mandelbrot(z,c):
+    #print(lib.suma(lib.producto(z,z),c))
+    return lib.suma(lib.producto(z,z),c)
+
+def esta_en_mandelbrot(c):
+    z=[0,0]
+    contador=0
+    for i in range(30):
+        contador=contador+1
+        z=mandelbrot(z,c)
+        if lib.modulo(z) > 2.0:
+            #print(str(z),"False")
+            return False,contador
+        
+    #print(str(z),"true")
+    return True,0
+
+def main():
+    dim_x=700
+    dim_y=400
+    plano = np.zeros((dim_y, dim_x))
+    for parte_r in range(dim_x):
+        for parte_i in range(dim_y):
+            c=[parte_r/200-2.5, parte_i/200-1]
+            pertenece,color = esta_en_mandelbrot(c)
+            if pertenece==True:
+                plano[parte_i][parte_r]=color
+            else:
+                plano[parte_i][parte_r]=color
+    plt.figure(figsize=(10,10))
+    plt.imshow(plano,'magma')
+    plt.show()            
+main()    
+    
+
 
