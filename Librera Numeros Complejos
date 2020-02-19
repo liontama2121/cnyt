@@ -15,7 +15,7 @@ def resta(c1,c2):
     restaN=c1[0]-c2[0]
     restaI=c1[1]-c1[1]
     return [restaN,restaI]
-def producto(c1,c2):
+def multiplicacion(c1,c2):
     '''multiplica numeros complejos la parte real[] + imaginario[]'''
     productoN=c1[0]*c2[0]+(-1*c1[1]*c2[1])
     productoI=c1[0]*c2[1]+c1[1]*c2[0]
@@ -169,7 +169,7 @@ def productoInternoVectores(vector1,vector2):
         for i in range(0, filas):
             for j in range(0, columnas):
                 for k in range(0, len(B)):
-                    m = producto(A[i][k], B[k][j])
+                    m = multiplicacion(A[i][k], B[k][j])
                     n = matriz[i][j]
                     matriz[i][j] = (m[0]+n[0], m[1]+n[1])
         return matriz
