@@ -156,7 +156,27 @@ def productoInternoVectores(vector1,vector2):
     for i in range(len(matriz)):
         aux.append(multiplicacionVectorEscalar(matriz[i],escalar))
     return aux
-def productoTensor(matriz1,matriz2):
+    
+ def multiplicacionMatrices(A,B):
+    '''Entran 2 matrices, una de M x I, la otra de I X N, retorna
+        la multiplicacion de lamatriz1 por la matriz 2 de dimension M X N'''
+    filasB = len(B)
+    columnasA = len(A[0])
+    if filasB == columnasA:
+        filas = len(A)
+        columnas = len(B[0])
+        matriz = [[(0, 0)] * columnas for x in range(filas)]
+        for i in range(0, filas):
+            for j in range(0, columnas):
+                for k in range(0, len(B)):
+                    m = producto(A[i][k], B[k][j])
+                    n = matriz[i][j]
+                    matriz[i][j] = (m[0]+n[0], m[1]+n[1])
+        return matriz
+    else:
+        
+        raise 'La multiplicación de matrices no está definida para estas matrices'    
+ def productoTensor(matriz1,matriz2):
     '''Entran 2 matrices, retorna el producto tensor entre estos'''
     aux = []
     subLista = []
