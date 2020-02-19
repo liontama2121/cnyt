@@ -1,1 +1,23 @@
 #
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+
+v=[[[1,0]],[[0,0]],[[0,0]],[[0,0]]]
+matriz=[[0,0,0,0],[0,0,0,1],[0,1,1,0],[1,0,0,0]]
+clics = 0
+
+for i in range clics
+print("vector estado final:",v)
+labels = ["pto 0","pto. 1","pto. 2","pto. 3"]
+estado = [v[0][0][0],v[1][0][0],v[2][0][0],v[3][0][0]]
+
+index = np.arange(len(labels))
+print("esto es 'index':",index)
+plt.bar(index,estado)
+plt.xlabel("estado")
+plt.ylabel("valor")
+plt.xticks(index ,labels,rotation = 75)
+plt.title("evolucion dinamica del sistema despues de "+ str(clics)+" clis de tiempo")
+plt.show()
