@@ -148,6 +148,32 @@ def productoInternoVectores(vector1,vector2):
     for i in range(len(vector1)): 
         aux = suma(aux,multiplicacion(vector1[i],vector2[i]))
     return aux;
+ def multiplicacionMatrizEscalar(matriz,escalar):
+    '''Se ingresa la matriz ,y el escalar conmplejo
+    como tupla,cada componente de la matriz es un vector complejo, retorna la multiplicación
+    de la matriz compleja por e escalar complejo'''
+    aux = []
+    for i in range(len(matriz)):
+        aux.append(multiplicacionVectorEscalar(matriz[i],escalar))
+    return aux
+def productoTensor(matriz1,matriz2):
+    '''Entran 2 matrices, retorna el producto tensor entre estos'''
+    aux = []
+    subLista = []
+    conta = len(matriz2)
+    for i in matriz1:
+        valorB = 0
+        valorA = 0
+        while valorA < conta:
+            for num1 in i:
+                for num2 in matriz2[valorB]:
+                    subLista.append(multiplicacion(num1,num2))
+            aux.append(subLista)
+            subLista = []
+            valorA +=1
+            valorB += 1
+    return aux
+    
    
 '''def main():
     lis1=[int (x) for x in stdin.readline().strip().split()]
